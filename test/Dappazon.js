@@ -5,7 +5,7 @@ const tokens = (n) => {
   return ethers.utils.parseUnits(n.toString(), 'ether');
 };
 
-const ID = 1;
+const id = 1;
 const name = 'Shoes';
 const categoty = 'Clothing';
 const image =
@@ -39,15 +39,15 @@ describe('Dappazon', () => {
     beforeEach(async () => {
       transaction = await dappazon
         .connect(storeOwner)
-        .list(ID, name, categoty, image, cost, rating, stock);
+        .list(id, name, categoty, image, cost, rating, stock);
 
       await transaction.wait();
     });
 
     it('Should return item attributes.', async () => {
-      const item = await dappazon.items(ID);
+      const item = await dappazon.items(id);
 
-      expect(item.id).to.equal(ID);
+      expect(item.id).to.equal(id);
       expect(item.cost).to.equal(cost);
     });
 
@@ -62,12 +62,12 @@ describe('Dappazon', () => {
     beforeEach(async () => {
       transaction = await dappazon
         .connect(storeOwner)
-        .list(ID, name, categoty, image, cost, rating, stock);
+        .list(id, name, categoty, image, cost, rating, stock);
 
       await transaction.wait();
 
       // Buy an item
-      transaction = await dappazon.connect(buyer).buy(ID, { value: cost });
+      transaction = await dappazon.connect(buyer).buy(id, { value: cost });
 
       await transaction.wait();
     });
@@ -100,11 +100,11 @@ describe('Dappazon', () => {
     beforeEach(async () => {
       let transaction = await dappazon
         .connect(storeOwner)
-        .list(ID, name, categoty, image, cost, rating, stock);
+        .list(id, name, categoty, image, cost, rating, stock);
       await transaction.wait();
 
       // Buy an item
-      transaction = await dappazon.connect(buyer).buy(ID, { value: cost });
+      transaction = await dappazon.connect(buyer).buy(id, { value: cost });
       await transaction.wait();
 
       // Get storeOwner balance before
