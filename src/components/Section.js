@@ -1,14 +1,17 @@
-import { ethers } from 'ethers'
+const categoryTitles = {
+  clothing: 'Clothing & Jewelry',
+  electronics: 'Electronics & Gadgets',
+  toys: 'Toys & Gaming',
+};
 
-// Components
-import Rating from './Rating'
-
-const Section = ({ title, items, togglePop }) => {
-    return (
-        <div className='cards__section'>
-
-        </div>
-    );
-}
+const Section = ({ title, children }) => {
+  return (
+    <div className="cards__section">
+      <h3 id={title}>{categoryTitles[title]}</h3>
+      <hr />
+      <div className="cards">{children}</div>
+    </div>
+  );
+};
 
 export default Section;
